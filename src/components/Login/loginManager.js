@@ -21,3 +21,19 @@ export const handleGoogleSignIn = () =>{
         console.error(errorMessage,errorCode);
     });
 }
+// sign out
+export const handleSignOut = () =>{
+    return firebase.auth().signOut()
+    .then( res =>{
+        const loggedInUser = res.user;
+        const signedOutUser = {
+            isSignedIn: false,
+            name: '',
+            email: ''
+        }
+        return signedOutUser;
+    }).catch(error =>{
+        const errorMessage = error.message;
+        console.log(errorMessage);
+    })
+}
