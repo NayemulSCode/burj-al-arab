@@ -37,3 +37,13 @@ export const handleSignOut = () =>{
         console.log(errorMessage);
     })
 }
+//jwt token
+export const storeAuthToken = () =>{
+    firebase.auth().currentUser.getIdToken(true)
+    .then(function(idToken){
+        console.log(idToken);
+        sessionStorage.setItem('token', idToken);
+    }).catch(function(error){
+        //handle error
+    })
+}

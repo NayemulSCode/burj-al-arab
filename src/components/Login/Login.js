@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
-import { handleGoogleSignIn, handleSignOut, initializeLogin } from './loginManager';
+import { handleGoogleSignIn, handleSignOut, initializeLogin, storeAuthToken } from './loginManager';
 import { useState } from 'react';
 
 
@@ -36,6 +36,7 @@ const Login = () => {
     const handleResponse = (res, redirect) =>{
         setUser(res);
         setLoggedInUser(res);
+        storeAuthToken(res);
        if(redirect){
         history.replace(from);
        }
